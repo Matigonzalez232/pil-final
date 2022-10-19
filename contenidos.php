@@ -11,7 +11,7 @@ $get = $f->antihackMulti($_GET);
 foreach ($get as $key => $get_) {
     (isset($_GET[$key]) && $key != 'pagina') ?  $filter[] = "contenidos.$key = '" . $get_ . "'" : '';
 }
-$area = isset($get['area']) ? $get['area'] : '';
+$area = isset($get['area']) ? $f->antihack_mysqli($_GET['area']) : '';
 
 $pagina = isset($_GET['pagina']) ? $f->antihack_mysqli($_GET['pagina']) : 1;
 $limite = 12;
@@ -37,55 +37,48 @@ $template->set("imagen", LOGO);
 $template->themeInit();
 ?>
 
-<div class="page-title-area pt-150 pb-55">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="page-titel-detalis  ">
-                    <div class="section-title">
-                        <h2><?= $contenidoData[array_key_first($contenidoData)]['area']["data"]['titulo'] ?></h2>
-                    </div>
-                    <div class="page-bc">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="<?= URL ?>"><?= $_SESSION["lang-txt"]["general"]["inicio"] ?></a></li>
-                                <li class="breadcrumb-item position-relative active" aria-current="page"><a href="<?= CANONICAL ?>"><?= $contenidoData[array_key_first($contenidoData)]['area']["data"]['titulo'] ?></a></li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-            </div>
+<!-- ======= Portfolio Section ======= -->
+<section id="portfolio" class="portfolio">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>Novedades</h2>
+            <p>Encontra todas las novedades</p>
         </div>
-    </div>
-</div>
-<div class="blog-area blog-ls blog-rs pt-120">
-    <div class="container">
-        <div class="row">
+
+        <ul id="portfolio-flters" class="d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
+            <li data-filter="*" class="filter-active">All</li>
+            <li data-filter=".filter-app">App</li>
+            <li data-filter=".filter-card">Card</li>
+            <li data-filter=".filter-web">Web</li>
+        </ul>
+
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+
             <?php
-            foreach ($contenidoData as $contentItem) {
-                $link = URL . "/c/" . $contentItem['data']['area'] . "/" . $f->normalizar_link($contentItem['data']['titulo']) . "/" . $contentItem['data']['cod'];
+            foreach ($contenidoData as $key => $item) {
+                $link= URL ."/".$item['data']['area']."/".$f->normalizar_link($item['data']['titulo'])."/".$item['data']['cod']; //no funciona bien el link
             ?>
-                <div class="col-md-4">
-                    <div class="news-items mb-30">
-                        <div class="news-img">
-                            <a href="<?= $link ?>"><img src="<?= $contentItem['images'][0]["url"] ?>" style="width:100%;height:350px;object-fit:cover" alt="img1"></a>
-                        </div>
-                        <span class="d-block pt-25"><?= $contentItem["data"]["fecha"] ?></span>
-                        <div class="news-details pt-5">
-                            <div class="news-title">
-                                <a href="<?= $link ?>"><?= $contentItem['data']['titulo'] ?></a>
-                            </div>
-                            <a class="slider-btn d-inline-block position-relative mt-10 fs-14" href="<?= $link ?>"><?= $_SESSION["lang-txt"]["general"]["ver_mas"] ?></a>
-                        </div>
+                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                    <div class="portfolio-img"><img src="<?=$item['images'][0]['url'] ?>" class="img-fluid" alt=""></div>
+                    <div class="portfolio-info">
+                        <h4><?=$item['data']['titulo'] ?></h4>
+                        <p><?=$item['data']['subtitulo'] ?></p>
+                        <a href="<?=$item['images'][0]['url'] ?>" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
+                        <a href="<?=$link ?>" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
                     </div>
                 </div>
-            <?php } ?>
-            <div class="col-12 mb-50">
-                <?= $paginador ?>
-            </div>
+            <?php
+            }
+            ?>
+
+
         </div>
+
     </div>
-</div>
+</section><!-- End Portfolio Section -->
+
+
 <?php
 $template->themeEnd();
 ?>
