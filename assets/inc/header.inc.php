@@ -80,8 +80,7 @@ if (!empty($marketing['data']['hubspot'])) { ?>
 <?php } ?>
 
 <!--Style theme -->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-<link href="<?= URL ?>/assets/theme/assets/vendor/aos/aos.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" /><link href="<?= URL ?>/assets/theme/assets/vendor/aos/aos.css" rel="stylesheet">
 <link href="<?= URL ?>/assets/theme/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="<?= URL ?>/assets/theme/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
 <link href="<?= URL ?>/assets/theme/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">

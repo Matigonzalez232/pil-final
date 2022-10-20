@@ -10,89 +10,79 @@ $config = new Clases\Config();
 $captchaData = $config->viewCaptcha();
 #Se carga la configuración de email
 $data = [
-    "filter" => ['contenidos.area = "contacto"'],
+  "filter" => ['contenidos.area = "contacto"'],
 ];
-$contenidoContacto = $contenidos->list($data, $_SESSION['lang']);
+$contenidoContacto = $contenidos->list($data, $_SESSION['lang'],true);
+$listaContacto = $contenidoContacto;
+?><br><br><br><br><br><br><br><br><?php
+
+unset($listaContacto['contacto-inicio']);
+var_dump($listaContacto);
 #Información de cabecera
 $template->set("title", "Contacto | " . TITULO);
 $template->set("description", "Envianos tus dudas y nosotros te asesoramos");
 $template->set("keywords", "");
 $template->themeInit();
 ?>
-<div class="page-title-area pt-150 pb-55">
-    <div class="container">
+<!-- ======= Contact Section ======= -->
+<section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2><?= $contenidoContacto['area']['data']['titulo'] ?></h2>
+          <p><?=$contenidoContacto['data']['contenido'] ?></p>
+        </div>
+
         <div class="row">
-            <div class="col-xl-12">
-                <div class="page-titel-detalis  ">
-                    <div class="section-title">
-                        <h2><?= $_SESSION["lang-txt"]["general"]["contacto"] ?></h2>
-                    </div>
-                    <div class="page-bc">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="<?= URL ?>"><?= $_SESSION["lang-txt"]["general"]["inicio"] ?></a></li>
-                                <li class="breadcrumb-item position-relative active" aria-current="page"><a href="<?= CANONICAL ?>"><?= $_SESSION["lang-txt"]["general"]["contacto"] ?></a></li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="contact_us pt-110">
-    <div class="container">
-        <?= $contenidoContacto["info"]["data"]["contenido"] ?>
-    </div>
-</div>
-<div class="map-area">
-    <div class="container">
-        <?= $contenidoContacto["mapa"]["data"]["contenido"] ?>
-    </div>
-</div>
 
-<div class="contact-form-area pt-95 pb-20">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-xl-8 col-lg-9 col-md-10">
-                <div class="contact-title text-center">
-                    <h3><?= $_SESSION["lang-txt"]["contacto"]["formulario_contacto"] ?></h3>
-                </div>
+          <div class="col-lg-5 d-flex align-items-stretch">
+          <div class="info">
+            <?php foreach($listaContacto as $key => $item){?>
+           
+              <div class="address">
+                <i class="<?= $item['data']['subtitulo']?>"></i>
+                <h4><?= $contenidoContacto['data']['titulo'] ?></h4>
+                <p>A108 Adam Street, New York, NY 535022</p>
+              </div>
+            <?php }?>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621"
+                frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
             </div>
-        </div>
-        <div id="response"></div>
-        <form class="contact-form-style" id="contactForm" data-url="<?= URL ?>" data-captcha="<?= $captchaData["data"]["captcha_key"] ?>" method="post">
-            <div class="row">
-                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="contact-input">
-                        <input name="nombre" id="f-name" placeholder="<?= $_SESSION['lang-txt']['usuarios']['nombre'] ?>*" type="text" required />
-                    </div>
-                </div>
-                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="contact-input">
-                        <input name="apellido" id="l-name" placeholder="<?= $_SESSION['lang-txt']['usuarios']['apellido'] ?>*" type="text" required />
-                    </div>
-                </div>
-                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="contact-input">
-                        <input name="email" id="email" placeholder="<?= $_SESSION['lang-txt']['usuarios']['email'] ?>*" type="email" required />
-                    </div>
-                </div>
-                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="contact-input">
-                        <input id="phone" name="telefono" placeholder="<?= $_SESSION['lang-txt']['usuarios']['telefono'] ?>" type="number" required />
-                    </div>
-                </div>
-                <div class="col-lg-12" data-aos="fade-up" data-aos-delay="200">
-                    <div class="contact-input">
-                        <textarea name="mensaje" style="border-radius: 5px;" id="message" placeholder="<?= $_SESSION['lang-txt']['usuarios']['mensaje'] ?>*" required></textarea>
-                    </div>
-                    <input name="captcha-response" type="hidden" value="">
-                    <button class="g-recaptcha p-btn border-0 mt-75" id="sendContact" data-aos="fade-up" data-aos-delay="200" data-sitekey="<?= $captchaData["data"]["captcha_key"] ?>" data-callback="sendContact" data-action='submit' name="enviar"><?= $_SESSION['lang-txt']['contacto']['enviar'] ?></button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
 
+          </div>
+
+          <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="name">Your Name</label>
+                  <input type="text" name="name" class="form-control" id="name" required>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="name">Your Email</label>
+                  <input type="email" class="form-control" name="email" id="email" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="name">Subject</label>
+                <input type="text" class="form-control" name="subject" id="subject" required>
+              </div>
+              <div class="form-group">
+                <label for="name">Message</label>
+                <textarea class="form-control" name="message" rows="10" required></textarea>
+              </div>
+              <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
 <?php $template->themeEnd() ?>
