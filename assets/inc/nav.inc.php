@@ -7,12 +7,12 @@
 
     <nav id="navbar" class="navbar">
       <ul>
-        <li><a class="nav-link scrollto active" href="<?= URL . "/index.php" ?>">Inicio</a></li>
-        <li><a class="nav-link scrollto" href="<?= URL . "/empresa" ?>">Sobre nosotros</a></li>
-        <li><a class="nav-link scrollto" href="<?= URL . "/c/novedades" ?>">Novedades</a></li>
-        <li><a class="nav-link   scrollto" href="<?= URL . "/c/portfolio" ?>">Portfolio</a></li>
-        <li><a class="nav-link scrollto" href="<?= URL . "/c/servicios" ?>">Servicios</a></li>
-        <li><a class="getstarted scrollto" href="<?= URL . "/contacto" ?>">Contacto</a></li>
+        <li><a class="nav-link scrollto " <?=CANONICAL == URL . "/" ? "active" : "";?> href="<?= URL?>">Inicio</a></li>
+        <li><a class="nav-link scrollto" <?=CANONICAL == URL . "/" ? "active" : "";?> href="<?= URL . "/empresa" ?>">Sobre nosotros</a></li>
+        <li><a class="nav-link scrollto" <?=CANONICAL == URL . "/" ? "active" : "";?> href="<?= URL . "/c/novedades" ?>">Novedades</a></li>
+        <li><a class="nav-link scrollto" <?=CANONICAL == URL . "/" ? "active" : "";?> href="<?= URL . "/c/portfolio" ?>">Portfolio</a></li>
+        <li><a class="nav-link scrollto" <?=CANONICAL == URL . "/" ? "active" : "";?> href="<?= URL . "/c/servicio-inicio" ?>">Servicios</a></li>
+        <li><a class="getstarted scrollto" <?=CANONICAL == URL . "/" ? "active" : "";?> href="<?= URL . "/contacto" ?>">Contacto</a></li>
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
     </nav><!-- .navbar -->

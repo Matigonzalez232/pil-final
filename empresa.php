@@ -1,5 +1,5 @@
 <?php
-require_once "Config/Autoload.php"; //arreglar el unset
+require_once "Config/Autoload.php"; 
 Config\Autoload::run();
 
 $template = new Clases\TemplateSite();

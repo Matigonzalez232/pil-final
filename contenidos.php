@@ -46,7 +46,7 @@ $template->themeInit();
             <p>Contenidos</p>
         </div>
 
-     
+
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
@@ -72,7 +72,6 @@ $template->themeInit();
         <?= $paginador ?>
     </div>
 </section><!-- End Portfolio Section -->
-
 
 <?php
 $template->themeEnd();
