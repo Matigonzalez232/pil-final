@@ -36,7 +36,15 @@ $template->set("keywords", "");
 $template->set("imagen", LOGO);
 $template->themeInit();
 ?>
+<section id="breadcrumbs" class="breadcrumbs">
+  <div class="container">
 
+    <ol>
+      <li><a href="index.php">INICIO</a></li>
+      <li><?= strtoupper($contenidoData[array_key_first($contenidoData)]['data']['area']) ?></li>
+    </ol>
+  </div>
+</section>
 <!-- ======= Portfolio Section ======= -->
 <section id="portfolio" class="portfolio ">
     <div class="container" data-aos="fade-up">

@@ -10,7 +10,7 @@
         <li><a class="nav-link scrollto " <?=CANONICAL == URL . "/" ? "active" : "";?> href="<?= URL?>">Inicio</a></li>
         <li><a class="nav-link scrollto" <?=CANONICAL == URL . "/" ? "active" : "";?> href="<?= URL . "/empresa" ?>">Sobre nosotros</a></li>
         <li><a class="nav-link scrollto" <?=CANONICAL == URL . "/" ? "active" : "";?> href="<?= URL . "/c/novedades" ?>">Novedades</a></li>
-        <li><a class="nav-link scrollto" <?=CANONICAL == URL . "/" ? "active" : "";?> href="<?= URL . "/c/portfolio" ?>">Portfolio</a></li>
+        <li><a class="nav-link scrollto" <?=CANONICAL == URL . "/" ? "active" : "";?> href="<?= URL . "/c/Portfolio-contenido" ?>">Portfolio</a></li>
         <li><a class="nav-link scrollto" <?=CANONICAL == URL . "/" ? "active" : "";?> href="<?= URL . "/c/servicio-inicio" ?>">Servicios</a></li>
         <li><a class="getstarted scrollto" <?=CANONICAL == URL . "/" ? "active" : "";?> href="<?= URL . "/contacto" ?>">Contacto</a></li>
       </ul>

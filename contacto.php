@@ -39,33 +39,13 @@ $template->themeInit();
       <h2><?= $contenidoContacto['contacto-inicio']['data']['area'] ?></h2>
       <p><?= $contenidoContacto['contacto-inicio']['data']['contenido'] ?></p>
     </div>
-
-    <div class="row">
-
-      <div class="col-lg-5 d-flex align-items-stretch">
-        <div class="info">
-          <?php foreach ($listaContacto as $key => $item) { ?>
-
-            <div class="address">
-              <i class="<?= $item['data']['subtitulo'] ?>"></i>
-              <h4><?= $item['data']['titulo'] ?></h4>
-              <?= $item['data']['contenido'] ?>
-            </div>
-          <?php } ?>
-          <iframe src="<?= $contenidoContacto['mapa']['data']['link'] ?>" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
-        </div>
-
-      </div>
-
-      <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-        <?php
+    <?php
         if (isset($_POST['submit'])) {
-          $nombre = isset($_POST["nombre"]) ?  $f->antihack_mysqli($_POST["nombre"]) : '';
-          $apellido = isset($_POST["apellido"]) ?  $f->antihack_mysqli($_POST["apellido"]) : '';
-          $email = isset($_POST["email"]) ?  $f->antihack_mysqli($_POST["email"]) : '';
-          $asunto = isset($_POST["asunto"]) ?  $f->antihack_mysqli($_POST["asunto"]) : '';
-          $mensaje = isset($_POST["mensaje"]) ?  $f->antihack_mysqli($_POST["mensaje"]) : '';
-
+          $nombre = $_POST["nombre"];  
+          $apellido = $_POST["apellido"]; 
+          $email = $_POST["email"];
+          $asunto = $_POST["asunto"];
+          $mensaje = $_POST["mensaje"];
           if (!empty($nombre) && !empty($email) && !empty($mensaje) && !empty($apellido)  && !empty($asunto)) {
 
             //MENSAJE A USUARIO
@@ -91,14 +71,33 @@ $template->themeInit();
             $enviar->set("mensaje", $mensajeFinalAdmin);
             $enviar->emailEnviar();
             //mensaje de success
-            echo "<div class='alert alert-success'>nofallo</div>";
+            echo "<div class='alert alert-success'><p>Se ha enviado el email</p></div>";
           } else {
             //echo error
             echo "<div class='alert alert-danger'>fallo</div>";
           }
         }
         ?>
-        <form method="post" role="form">
+    <div class="row">
+
+      <div class="col-lg-5 d-flex align-items-stretch">
+        <div class="info">
+          <?php foreach ($listaContacto as $key => $item) { ?>
+
+            <div class="address">
+              <i class="<?= $item['data']['subtitulo'] ?>"></i>
+              <h4><?= $item['data']['titulo'] ?></h4>
+              <?= $item['data']['contenido'] ?>
+            </div>
+          <?php } ?>
+          <iframe src="<?= $contenidoContacto['mapa']['data']['link'] ?>" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+        </div>
+
+      </div>
+     
+      <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+        
+        <form method="post" role="form" class="php-email-form-">
           <div class="row">
             <div class="form-group col-md-6">
               <label for="name">Tu nombre</label>
